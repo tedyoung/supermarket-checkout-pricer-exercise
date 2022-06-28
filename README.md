@@ -27,3 +27,5 @@ The goal of the exercise is to implement a pricer that can handle the scenarios,
     - Discounts based on day of the week (e.g., Friday Special: sourdough bread 30% off)
  
  - The pricer should be able to handle combinations of the above scenarios, when there is more than one special deal in the shopping cart items.
+
+Adapted from http://codekata.com/kata/kata01-supermarket-pricing/ and https://github.com/serenity-dojo/kata-supermarket-checkout.
