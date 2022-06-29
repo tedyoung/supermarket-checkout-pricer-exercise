@@ -12,7 +12,7 @@
 
   <properties>
     <java.version>8</java.version>
-    <junit.version>4.13.2</junit.version>
+    <junit.version>5.8.2</junit.version>
     <assertj.version>3.23.1</assertj.version>
 
     <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -23,19 +23,35 @@
   </properties>
 
   <dependencies>
+
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>${assertj.version}</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+
   <build>
     <plugins>
       <plugin>
