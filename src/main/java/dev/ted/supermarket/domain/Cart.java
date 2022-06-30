@@ -14,17 +14,7 @@ public class Cart {
         this.totalPrice += productPrice;
     }
 
-    public String receipt() {
-        return receiptForNonEmptyCart();
-    }
-
-    private String receiptForNonEmptyCart() {
-        return """
-                %s $%s
-                                    
-                Total Price: $%s
-                """.formatted(productName,
-                              totalPrice(),
-                              totalPrice());
+    public String productName() {
+        return productName;
     }
 }
