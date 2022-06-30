@@ -52,8 +52,9 @@ class CartTest {
 //        cart.add(new Product("Toothbrush", 1));
 //        cart.add(new Product("Toothpaste", 2));
 //
-//        assertThat(cart.product())
-//                .containsEx
+//        assertThat(cart.contents())
+//                .containsExactly(new Product("Toothbrush", 1),
+//                                 new Product("Toothpaste", 2));
 //    }
 
 }
