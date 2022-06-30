@@ -12,13 +12,20 @@ public class ScannerPrinter {
 
     public String receiptForNonEmptyCart() {
         Product product = cart.contents().findFirst().get();
+        String productRow = productToReceiptEntry(product);
         return """
-                %s $%s
+                %s
                                     
                 Total Price: $%s
-                """.formatted(product.name(),
-                              product.price(),
+                """.formatted(productRow,
                               cart.totalPrice());
+    }
+
+    private String productToReceiptEntry(Product product) {
+        return """
+                %s $%s"""
+                .formatted((product.name()),
+                           product.price());
     }
 
     public String receipt() {
