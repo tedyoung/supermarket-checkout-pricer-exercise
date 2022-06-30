@@ -6,6 +6,9 @@ import static org.assertj.core.api.Assertions.*;
 
 class CartTest {
 
+    private static final Product TOOTHBRUSH = new Product("Toothbrush", 1);
+    private static final Product TOOTHPASTE = new Product("Toothpaste", 2);
+
     @Test
     void emptyCartHasTotalPriceOfZero() {
         Cart cart = new Cart();
@@ -18,7 +21,7 @@ class CartTest {
     public void addToothbrushProductThenTotalPriceIsOneDollar() throws Exception {
         Cart cart = new Cart();
 
-        cart.add(new Product("Toothbrush", 1));
+        cart.add(TOOTHBRUSH);
 
         assertThat(cart.totalPrice())
                 .isEqualTo(1);
@@ -28,8 +31,8 @@ class CartTest {
     public void addTwoToothbrushesThenTotalPriceIsTwoDollars() throws Exception {
         Cart cart = new Cart();
 
-        cart.add(new Product("Toothbrush", 1));
-        cart.add(new Product("Toothbrush", 1));
+        cart.add(TOOTHBRUSH);
+        cart.add(TOOTHBRUSH);
 
         assertThat(cart.totalPrice())
                 .isEqualTo(2);
@@ -39,8 +42,8 @@ class CartTest {
     public void addTwoDifferentItemsThenTotalPriceIsSum() throws Exception {
         Cart cart = new Cart();
 
-        cart.add(new Product("Toothbrush", 1));
-        cart.add(new Product("Toothpaste", 2));
+        cart.add(TOOTHBRUSH);
+        cart.add(TOOTHPASTE);
 
         assertThat(cart.totalPrice())
                 .isEqualTo(3);
@@ -49,12 +52,12 @@ class CartTest {
     @Test
     public void addMultipleItemsThenContentsReturnsMultipleItems() throws Exception {
         Cart cart = new Cart();
-        cart.add(new Product("Toothbrush", 1));
-        cart.add(new Product("Toothpaste", 2));
+        cart.add(TOOTHBRUSH);
+        cart.add(TOOTHPASTE);
 
         assertThat(cart.contents())
-                .containsExactly(new Product("Toothbrush", 1),
-                                 new Product("Toothpaste", 2));
+                .containsExactly(TOOTHBRUSH,
+                                 TOOTHPASTE);
     }
 
 }
