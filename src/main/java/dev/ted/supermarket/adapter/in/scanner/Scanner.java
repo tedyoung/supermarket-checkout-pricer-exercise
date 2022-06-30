@@ -10,6 +10,13 @@ public class Scanner {
     }
 
     public String receipt() {
-        return cart.receipt();
+        return receiptForEmptyCart();
     }
+
+    private String receiptForEmptyCart() {
+        return """
+                Total Price: $0
+                """;
+    }
+
 }
