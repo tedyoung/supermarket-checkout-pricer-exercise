@@ -49,10 +49,11 @@ class CartTest {
 //    @Test
 //    public void addMultipleItemsThenContentsReturnsMultipleItems() throws Exception {
 //        Cart cart = new Cart();
-//        cart.add("Toothbrush", 1);
-//        cart.add("Toothpaste", 2);
+//        cart.add(new Product("Toothbrush", 1));
+//        cart.add(new Product("Toothpaste", 2));
 //
-//        cart.contents();
+//        assertThat(cart.product())
+//                .containsEx
 //    }
 
 }

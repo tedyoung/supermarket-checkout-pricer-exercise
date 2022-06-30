@@ -1,5 +1,7 @@
 package dev.ted.supermarket.domain;
 
+import java.util.stream.Stream;
+
 public class Cart {
 
     private int totalPrice = 0;
@@ -14,8 +16,8 @@ public class Cart {
         this.product = product;
     }
 
-    public Product product() {
-        return product;
+    public Stream<Product> contents() {
+        return Stream.of(product);
     }
 
 }

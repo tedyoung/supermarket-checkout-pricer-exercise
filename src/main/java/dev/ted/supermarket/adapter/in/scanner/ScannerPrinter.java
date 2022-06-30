@@ -1,6 +1,7 @@
 package dev.ted.supermarket.adapter.in.scanner;
 
 import dev.ted.supermarket.domain.Cart;
+import dev.ted.supermarket.domain.Product;
 
 public class ScannerPrinter {
     private Cart cart;
@@ -10,12 +11,13 @@ public class ScannerPrinter {
     }
 
     public String receiptForNonEmptyCart() {
+        Product product = cart.contents().findFirst().get();
         return """
                 %s $%s
                                     
                 Total Price: $%s
-                """.formatted(cart.product().productName(),
-                              cart.product().productPrice(),
+                """.formatted(product.productName(),
+                              product.productPrice(),
                               cart.totalPrice());
     }
 
