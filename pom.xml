@@ -11,7 +11,7 @@
   <description>Supermarket Checkout Pricer</description>
 
   <properties>
-    <java.version>8</java.version>
+    <java.version>18</java.version>
     <junit.version>5.8.2</junit.version>
     <assertj.version>3.23.1</assertj.version>
 
