@@ -14,8 +14,8 @@ public class Cart {
     }
 
     public void add(Product product) {
-        this.totalPrice += product.productPrice();
-        this.products.add(product);
+        totalPrice += product.price();
+        products.add(product);
     }
 
     public Stream<Product> contents() {

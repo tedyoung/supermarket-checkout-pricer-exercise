@@ -46,15 +46,15 @@ class CartTest {
                 .isEqualTo(3);
     }
 
-//    @Test
-//    public void addMultipleItemsThenContentsReturnsMultipleItems() throws Exception {
-//        Cart cart = new Cart();
-//        cart.add(new Product("Toothbrush", 1));
-//        cart.add(new Product("Toothpaste", 2));
-//
-//        assertThat(cart.contents())
-//                .containsExactly(new Product("Toothbrush", 1),
-//                                 new Product("Toothpaste", 2));
-//    }
+    @Test
+    public void addMultipleItemsThenContentsReturnsMultipleItems() throws Exception {
+        Cart cart = new Cart();
+        cart.add(new Product("Toothbrush", 1));
+        cart.add(new Product("Toothpaste", 2));
+
+        assertThat(cart.contents())
+                .containsExactly(new Product("Toothbrush", 1),
+                                 new Product("Toothpaste", 2));
+    }
 
 }
