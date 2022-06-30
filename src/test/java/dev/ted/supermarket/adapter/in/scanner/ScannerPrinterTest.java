@@ -35,6 +35,7 @@ class ScannerPrinterTest {
                             """);
     }
 
+    @Test
     public void receiptShowsMultipleItemNamesAndPricesAndTotal() throws Exception {
         Cart cart = new Cart();
         ScannerPrinter scannerPrinter = new ScannerPrinter(cart);
