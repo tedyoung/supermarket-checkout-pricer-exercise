@@ -14,7 +14,8 @@ public class ScannerPrinter {
                 %s $%s
                                     
                 Total Price: $%s
-                """.formatted(cart.productName(), cart.totalPrice(),
+                """.formatted(cart.product().productName(),
+                              cart.product().productPrice(),
                               cart.totalPrice());
     }
 
