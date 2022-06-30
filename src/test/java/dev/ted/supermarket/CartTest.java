@@ -8,11 +8,19 @@ class CartTest {
 
     @Test
     void emptyCartHasTotalPriceOfZero() {
-        // Cart cart = new Cart();
+        Cart cart = new Cart();
 
-        fail("make this test compile, make sure it fails, then make it pass");
+        assertThat(cart.totalPrice())
+                .isZero();
+    }
 
-//        assertThat(cart)
-//                .isNotNull();
+    @Test
+    public void addToothbrushProductThenTotalPriceIsOneDollar() throws Exception {
+        Cart cart = new Cart();
+
+        cart.add("Toothbrush", 1);
+
+        assertThat(cart.totalPrice())
+                .isEqualTo(1);
     }
 }
