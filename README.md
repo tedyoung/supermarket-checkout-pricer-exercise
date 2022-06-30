@@ -48,6 +48,11 @@ When handling a "receipt printing" story, think about where that might go.
 
 In Hexagonal Architecture, all I/O goes into a separate class and package (e.g., `adapter.out.console.receipt.ReceiptPrinter`), while keeping the Domain "pure" in its own package (e.g., `domain.Cart`).
 
+#### Details
+
+Product "add" information comes in to our system as Product Name and Price.
+Upon add, we display the receipt to the external ReceiptDisplay system.
+
 ## More Scenarios
 
 The goal of the exercise is to implement pricing code in the cart that can handle different scenarios, such as the following:

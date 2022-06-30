@@ -47,17 +47,6 @@ class CartTest {
     }
 
     @Test
-    public void emptyCartReceiptShowsZeroPrice() throws Exception {
-        Cart cart = new Cart();
-
-        assertThat(cart.receipt())
-                .isEqualTo("""
-                           Total Price: $0
-                           """
-                           );
-    }
-
-    @Test
     public void cartWithItemThenReceiptShowsItemAndPrice() throws Exception {
         Cart cart = new Cart();
 
@@ -82,22 +71,6 @@ class CartTest {
                             Toothpaste $2
 
                             Total Price: $2
-                            """);
-    }
-
-    @Test
-    public void cartWithMultipleItemsThenReceiptShowsAllItemNamesAndPrices() throws Exception {
-        Cart cart = new Cart();
-
-        cart.add("Toothbrush", 1);
-        cart.add("Toothpaste", 2);
-
-        assertThat(cart.receipt())
-                .isEqualTo("""
-                            Toothbrush $1
-                            Toothpaste $2
-
-                            Total Price: $3
                             """);
     }
 
