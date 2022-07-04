@@ -12,13 +12,13 @@ public class AddProductToCartTest {
     private static final String TOOTHPASTE_UPC = "9456";
 
     @Test
-    public void cartTotalPriceStartsAtZero() throws Exception {
+    public void cartTotalPriceStartsAtZeroAndIsEmpty() throws Exception {
         CartService cartService = new CartService();
 
-        BigDecimal total = cartService.total();
-
-        assertThat(total)
+        assertThat(cartService.total())
                 .isZero();
+        assertThat(cartService.isEmpty())
+                .isTrue();
     }
 
     @Test
@@ -31,6 +31,9 @@ public class AddProductToCartTest {
         // how do we know it was added: cart total == 1
         assertThat(cartService.total())
                 .isEqualTo("1");
+
+        assertThat(cartService.isEmpty())
+                .isFalse();
     }
 
     @Test
