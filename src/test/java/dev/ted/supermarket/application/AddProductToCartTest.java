@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 public class AddProductToCartTest {
 
     @Test
-    public void cartTotalStartsAtZero() throws Exception {
+    public void cartTotalPriceStartsAtZero() throws Exception {
         CartService cartService = new CartService();
 
         int total = cartService.total();
@@ -16,7 +16,7 @@ public class AddProductToCartTest {
                 .isZero();
     }
 
-//    @Test
+    @Test
     public void addToothbrushThenCartTotalPriceIsOneDollar() throws Exception {
         CartService cartService = new CartService();
 
