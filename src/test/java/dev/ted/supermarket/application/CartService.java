@@ -13,10 +13,16 @@ public class CartService {
     }
 
     public void addProduct(String upc) {
+        total += priceFor(upc);
+    }
+
+    private int priceFor(String upc) {
+        int itemPrice = 0;
         if (upc.equals(TOOTHBRUSH_UPC)) {
-            total += TOOTHBRUSH_PRICE;
+            itemPrice = TOOTHBRUSH_PRICE;
         } else if (upc.equals(TOOTHPASTE_UPC)) {
-            total += TOOTHPASTE_PRICE;
+            itemPrice = TOOTHPASTE_PRICE;
         }
+        return itemPrice;
     }
 }
