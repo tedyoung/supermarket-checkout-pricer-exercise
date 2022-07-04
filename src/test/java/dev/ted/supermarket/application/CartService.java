@@ -19,7 +19,8 @@ public class CartService {
     }
 
     public void finalizeOrder() {
-
+        total = BigDecimal.ZERO;
+        isEmpty = true;
     }
 
     public boolean isEmpty() {
