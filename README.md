@@ -10,6 +10,7 @@ The supermarket runs special deals, such as:
  - Buy two toothbrushes, get one half-off
  - 10% discount on rice
  - Bags of 1 kg of oranges $4 instead of $5.
+ - Single day specials (only good on Friday) or during specific time (3pm-5pm Mon-Fri). 
  - and so on
 
 These are just examples: the actual special deals changes each week, so needs to be easily configurable.
@@ -19,7 +20,7 @@ These are just examples: the actual special deals changes each week, so needs to
 A story to start with is:
 
       Given a toothbrush product that has a price of $1
-      When toothbrush is added to the cart
+      When a toothbrush is added to the cart
       Then querying cart's total price returns $1.00
 
 And you can follow up with:
@@ -30,23 +31,29 @@ And you can follow up with:
       Then querying cart's total price returns $1.50
 
 
-### TDD Hints
+### TDD Path
 
-Start with the test, of course.
+Start with the test, of course, i.e., a test method in the `CartTest` class.
+Let the production code class be created by a test that doesn't compile.
 
 Think about a "baseline" test: what is the cart's total price when it's empty?
 
-Then when adding one product.
+Then when adding one product?
 
-Then when adding multiple products.
+Then when adding multiple products?
+Two of the same product?
+Two different products?
 
 This path follows the ZOM in the ZOMbie acronym: **Z**ero, **O**ne, **M**any/**M**ore complex (while considering **B**oundaries, **I**nterfaces, and **E**xceptional cases).
 
-### Hexagonal Architecture Hints
+### Hexagonal Architecture Path
+
+It might make more sense to *start* with a Hexagonal Architecture, and do this exercise "outside-in".
+Consider: how does the system know which `Product` was added to the `Cart`?
+
 
 When handling a "receipt printing" story, think about where that might go.
-
-In Hexagonal Architecture, all I/O goes into a separate class and package (e.g., `adapter.out.console.receipt.ReceiptPrinter`), while keeping the Domain "pure" in its own package (e.g., `domain.Cart`).
+Remember that in Hexagonal Architecture, all I/O goes into a separate class and package (e.g., `adapter.out.console.receipt.ReceiptPrinter`), while keeping the Domain "pure" in its own package (e.g., `domain.Cart`).
 
 ## More Scenarios
 
