@@ -18,9 +18,11 @@ public class CartService {
         isEmpty = false;
     }
 
-    public void finalizeOrder() {
+    public Receipt finalizeOrder() {
+        Receipt receipt = new Receipt(total);
         total = BigDecimal.ZERO;
         isEmpty = true;
+        return receipt;
     }
 
     public boolean isEmpty() {

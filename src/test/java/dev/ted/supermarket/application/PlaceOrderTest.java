@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 public class PlaceOrderTest {
 
     @Test
-    public void cartWithOneProductPlaceOrderThenEmptiesCart() throws Exception {
+    public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
         CartService cartService = new CartService();
         cartService.addProduct(TOOTHBRUSH_UPC);
 
@@ -18,6 +18,17 @@ public class PlaceOrderTest {
                 .isZero();
         assertThat(cartService.isEmpty())
                 .isTrue();
+    }
+
+    @Test
+    public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
+        CartService cartService = new CartService();
+        cartService.addProduct(TOOTHBRUSH_UPC);
+
+        Receipt receipt = cartService.finalizeOrder();
+
+        assertThat(receipt.total())
+                .isEqualTo("1");
     }
 
 }
