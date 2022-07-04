@@ -9,6 +9,6 @@ public class CartService {
     }
 
     public void addProduct(String upc) {
-        total = 1;
+        total += 1;
     }
 }

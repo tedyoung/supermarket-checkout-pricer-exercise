@@ -27,4 +27,15 @@ public class AddProductToCartTest {
         assertThat(cartService.total())
                 .isEqualTo(1);
     }
+
+    @Test
+    public void twoToothbrushesThenCartTotalPriceIsTwoDollars() throws Exception {
+        CartService cartService = new CartService();
+
+        cartService.addProduct("0123");
+        cartService.addProduct("0123");
+
+        assertThat(cartService.total())
+                .isEqualTo(2);
+    }
 }
