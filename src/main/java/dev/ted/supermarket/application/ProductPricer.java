@@ -14,6 +14,7 @@ public class ProductPricer {
 
     public ProductPricer() {
         productToPrice.put(TOOTHPASTE_UPC, BigDecimal.valueOf(TOOTHPASTE_PRICE));
+        productToPrice.put(TOOTHBRUSH_UPC, BigDecimal.valueOf(TOOTHBRUSH_PRICE));
     }
 
     BigDecimal priceFor(String upc) {
@@ -21,8 +22,6 @@ public class ProductPricer {
             return productToPrice.get(upc);
         }
         int itemPrice = switch (upc) {
-            case TOOTHBRUSH_UPC -> TOOTHBRUSH_PRICE;
-//            case TOOTHPASTE_UPC -> TOOTHPASTE_PRICE;
             default -> 0;
         };
         return BigDecimal.valueOf(itemPrice);
