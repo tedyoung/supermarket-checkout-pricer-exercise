@@ -16,8 +16,15 @@ public class AddProductToCartTest {
                 .isZero();
     }
 
+//    @Test
     public void addToothbrushThenCartTotalPriceIsOneDollar() throws Exception {
+        CartService cartService = new CartService();
+
         // add product (toothbrush)
-        // how do we know it was added?
+        cartService.addProduct("0123");
+
+        // how do we know it was added: cart total == 1
+        assertThat(cartService.total())
+                .isEqualTo(1);
     }
 }
