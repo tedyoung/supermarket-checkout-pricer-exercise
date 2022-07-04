@@ -2,6 +2,8 @@ package dev.ted.supermarket.application;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class AddProductToCartTest {
@@ -13,7 +15,7 @@ public class AddProductToCartTest {
     public void cartTotalPriceStartsAtZero() throws Exception {
         CartService cartService = new CartService();
 
-        int total = cartService.total();
+        BigDecimal total = cartService.total();
 
         assertThat(total)
                 .isZero();
@@ -28,18 +30,18 @@ public class AddProductToCartTest {
 
         // how do we know it was added: cart total == 1
         assertThat(cartService.total())
-                .isEqualTo(1);
+                .isEqualTo("1");
     }
 
     @Test
-    public void twoToothbrushesThenCartTotalPriceIsTwoDollars() throws Exception {
+    public void twoItemsThenCartTotalPriceIsSumOfProductPrices() throws Exception {
         CartService cartService = new CartService();
 
         cartService.addProduct(TOOTHBRUSH_UPC);
-        cartService.addProduct(TOOTHBRUSH_UPC);
+        cartService.addProduct(TOOTHPASTE_UPC);
 
         assertThat(cartService.total())
-                .isEqualTo(2);
+                .isEqualTo(BigDecimal.valueOf(1 + 3)); // evident data
     }
 
     @Test
@@ -49,7 +51,7 @@ public class AddProductToCartTest {
         cartService.addProduct(TOOTHPASTE_UPC);
 
         assertThat(cartService.total())
-                .isEqualTo(3);
+                .isEqualTo("3");
     }
 
 }

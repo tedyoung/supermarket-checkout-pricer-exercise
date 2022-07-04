@@ -1,5 +1,7 @@
 package dev.ted.supermarket.application;
 
+import java.math.BigDecimal;
+
 public class ProductPricer {
     static final int TOOTHBRUSH_PRICE = 1;
     static final int TOOTHPASTE_PRICE = 3;
@@ -9,13 +11,13 @@ public class ProductPricer {
     public ProductPricer() {
     }
 
-    int priceFor(String upc) {
+    BigDecimal priceFor(String upc) {
         int itemPrice = 0;
         if (upc.equals(TOOTHBRUSH_UPC)) {
             itemPrice = TOOTHBRUSH_PRICE;
         } else if (upc.equals(TOOTHPASTE_UPC)) {
             itemPrice = TOOTHPASTE_PRICE;
         }
-        return itemPrice;
+        return BigDecimal.valueOf(itemPrice);
     }
 }

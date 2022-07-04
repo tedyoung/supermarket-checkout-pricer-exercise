@@ -7,7 +7,7 @@ The supermarket has a catalog with different types of products (rice, apples, mi
 Each product has a price, and the total price of the shopping cart is the total of all the prices.
 
 The supermarket runs special deals, such as:
- - Buy two toothbrushes, get one half-off
+ - Buy two of the same item (e.g., 2 toothbrushes), get one half-off
  - 10% discount on rice
  - Bags of 1 kg of oranges $4 instead of $5.
  - Single day specials (only good on Friday) or during specific time (3pm-5pm Mon-Fri). 

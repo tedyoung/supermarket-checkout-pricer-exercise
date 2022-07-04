@@ -1,16 +1,19 @@
 package dev.ted.supermarket.application;
 
+import java.math.BigDecimal;
+
 public class CartService {
 
     private final ProductPricer productPricer = new ProductPricer();
-    private int total = 0;
 
-    public int total() {
+    private BigDecimal total = BigDecimal.ZERO;
+
+    public BigDecimal total() {
         return total;
     }
 
     public void addProduct(String upc) {
-        total += productPricer.priceFor(upc);
+        total = total.add(productPricer.priceFor(upc));
     }
 
 }
