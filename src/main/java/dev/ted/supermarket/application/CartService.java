@@ -4,10 +4,14 @@ import java.math.BigDecimal;
 
 public class CartService {
 
-    private final ProductPricer productPricer = new ProductPricer();
+    private final ProductPricer productPricer;
 
     private BigDecimal total = BigDecimal.ZERO;
     private boolean isEmpty = true;
+
+    public CartService(ProductPricer productPricer) {
+        this.productPricer = productPricer;
+    }
 
     public BigDecimal total() {
         return total;

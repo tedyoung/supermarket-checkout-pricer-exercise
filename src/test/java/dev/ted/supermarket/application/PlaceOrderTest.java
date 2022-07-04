@@ -9,7 +9,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
-        CartService cartService = new CartService();
+        CartService cartService = new CartService(new ProductPricer());
         cartService.addProduct(TOOTHBRUSH_UPC);
 
         cartService.finalizeOrder();
@@ -22,7 +22,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
-        CartService cartService = new CartService();
+        CartService cartService = new CartService(new ProductPricer());
         cartService.addProduct(TOOTHBRUSH_UPC);
 
         Receipt receipt = cartService.finalizeOrder();

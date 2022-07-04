@@ -7,7 +7,7 @@ public class SpecialDealsCartTest {
 
 //    @Test
     public void twoSameItemsThenSecondIsDiscountedHalfOff() throws Exception {
-        CartService cartService = new CartService();
+        CartService cartService = new CartService(new ProductPricer());
 
         cartService.addProduct(TOOTHBRUSH_UPC);
         cartService.addProduct(TOOTHBRUSH_UPC);
