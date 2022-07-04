@@ -25,10 +25,8 @@ public class AddProductToCartTest {
     public void addToothbrushThenCartTotalPriceIsOneDollar() throws Exception {
         CartService cartService = new CartService(new ProductPricer());
 
-        // add product (toothbrush)
         cartService.addProduct(TOOTHBRUSH_UPC);
 
-        // how do we know it was added: cart total == 1
         assertThat(cartService.total())
                 .isEqualTo("1");
 
