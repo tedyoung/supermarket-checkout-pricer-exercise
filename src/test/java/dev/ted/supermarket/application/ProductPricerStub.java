@@ -6,11 +6,13 @@ import java.util.Map;
 
 public class ProductPricerStub implements ProductPricer {
 
-    private final Map<String, BigDecimal> productToPrice;
+    private final Map<String, BigDecimal> productToPrice = new HashMap<>();
+
+    public ProductPricerStub() {
+    }
 
     public ProductPricerStub(String upc, BigDecimal price,
                              String upc2, BigDecimal price2) {
-        productToPrice = new HashMap<>();
         productToPrice.put(upc, price);
         productToPrice.put(upc2, price2);
     }

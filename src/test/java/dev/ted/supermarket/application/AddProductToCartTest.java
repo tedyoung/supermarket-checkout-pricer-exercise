@@ -10,9 +10,7 @@ public class AddProductToCartTest {
 
     @Test
     public void cartTotalPriceStartsAtZeroAndIsEmpty() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub(
-                "9456", BigDecimal.valueOf(3),
-                "0123", BigDecimal.valueOf(1));
+        ProductPricerStub productPricer = new ProductPricerStub();
         CartService cartService = new CartService(productPricer);
 
         assertThat(cartService.total())
