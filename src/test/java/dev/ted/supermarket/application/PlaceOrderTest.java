@@ -2,15 +2,16 @@ package dev.ted.supermarket.application;
 
 import org.junit.jupiter.api.Test;
 
-import static dev.ted.supermarket.application.ProductPricerStub.TOOTHBRUSH_UPC;
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
-        CartService cartService = new CartService(new ProductPricerStub());
-        cartService.addProduct(TOOTHBRUSH_UPC);
+        CartService cartService = new CartService(new ProductPricerStub("9456", BigDecimal.valueOf(3), "0123", BigDecimal.valueOf(1)));
+        cartService.addProduct("0123");
 
         cartService.finalizeOrder();
 
@@ -22,8 +23,8 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
-        CartService cartService = new CartService(new ProductPricerStub());
-        cartService.addProduct(TOOTHBRUSH_UPC);
+        CartService cartService = new CartService(new ProductPricerStub("9456", BigDecimal.valueOf(3), "0123", BigDecimal.valueOf(1)));
+        cartService.addProduct("0123");
 
         Receipt receipt = cartService.finalizeOrder();
 

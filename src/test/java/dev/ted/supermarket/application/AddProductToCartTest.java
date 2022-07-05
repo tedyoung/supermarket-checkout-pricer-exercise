@@ -8,12 +8,12 @@ import static org.assertj.core.api.Assertions.*;
 
 public class AddProductToCartTest {
 
-    private static final String TOOTHBRUSH_UPC = "0123";
-    private static final String TOOTHPASTE_UPC = "9456";
-
     @Test
     public void cartTotalPriceStartsAtZeroAndIsEmpty() throws Exception {
-        CartService cartService = new CartService(new ProductPricerStub());
+        ProductPricerStub productPricer = new ProductPricerStub(
+                "9456", BigDecimal.valueOf(3),
+                "0123", BigDecimal.valueOf(1));
+        CartService cartService = new CartService(productPricer);
 
         assertThat(cartService.total())
                 .isZero();
@@ -23,9 +23,12 @@ public class AddProductToCartTest {
 
     @Test
     public void addToothbrushThenCartTotalPriceIsOneDollar() throws Exception {
-        CartService cartService = new CartService(new ProductPricerStub());
+        ProductPricerStub productPricer = new ProductPricerStub(
+                "9456", BigDecimal.valueOf(3),
+                "0123", BigDecimal.valueOf(1));
+        CartService cartService = new CartService(productPricer);
 
-        cartService.addProduct(TOOTHBRUSH_UPC);
+        cartService.addProduct("0123");
 
         assertThat(cartService.total())
                 .isEqualTo("1");
@@ -36,10 +39,10 @@ public class AddProductToCartTest {
 
     @Test
     public void twoItemsThenCartTotalPriceIsSumOfProductPrices() throws Exception {
-        CartService cartService = new CartService(new ProductPricerStub());
+        CartService cartService = new CartService(new ProductPricerStub("9456", BigDecimal.valueOf(3), "0123", BigDecimal.valueOf(1)));
 
-        cartService.addProduct(TOOTHBRUSH_UPC);
-        cartService.addProduct(TOOTHPASTE_UPC);
+        cartService.addProduct("0123");
+        cartService.addProduct("9456");
 
         assertThat(cartService.total())
                 .isEqualTo(BigDecimal.valueOf(1 + 3)); // evident data
@@ -47,9 +50,9 @@ public class AddProductToCartTest {
 
     @Test
     public void addToothpasteThenCartTotalPriceIsThreeDollars() throws Exception {
-        CartService cartService = new CartService(new ProductPricerStub());
+        CartService cartService = new CartService(new ProductPricerStub("9456", BigDecimal.valueOf(3), "0123", BigDecimal.valueOf(1)));
 
-        cartService.addProduct(TOOTHPASTE_UPC);
+        cartService.addProduct("9456");
 
         assertThat(cartService.total())
                 .isEqualTo("3");

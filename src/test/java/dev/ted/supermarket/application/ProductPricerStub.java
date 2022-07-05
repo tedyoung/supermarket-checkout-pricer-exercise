@@ -5,17 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductPricerStub implements ProductPricer {
-    static final int TOOTHBRUSH_PRICE = 1;
-    static final int TOOTHPASTE_PRICE = 3;
-    static final String TOOTHBRUSH_UPC = "0123";
-    static final String TOOTHPASTE_UPC = "9456";
 
     private final Map<String, BigDecimal> productToPrice;
 
-    public ProductPricerStub() {
+    public ProductPricerStub(String upc, BigDecimal price,
+                             String upc2, BigDecimal price2) {
         productToPrice = new HashMap<>();
-        productToPrice.put(TOOTHPASTE_UPC, BigDecimal.valueOf(TOOTHPASTE_PRICE));
-        productToPrice.put(TOOTHBRUSH_UPC, BigDecimal.valueOf(TOOTHBRUSH_PRICE));
+        productToPrice.put(upc, price);
+        productToPrice.put(upc2, price2);
     }
 
     @Override public BigDecimal priceFor(String upc) {
