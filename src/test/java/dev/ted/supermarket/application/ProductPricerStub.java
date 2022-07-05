@@ -17,6 +17,10 @@ public class ProductPricerStub implements ProductPricer {
         productToPrice.put(upc2, price2);
     }
 
+    public ProductPricerStub(String upc, BigDecimal price) {
+        productToPrice.put(upc, price);
+    }
+
     @Override public BigDecimal priceFor(String upc) {
         if (productToPrice.containsKey(upc)) {
             return productToPrice.get(upc);
