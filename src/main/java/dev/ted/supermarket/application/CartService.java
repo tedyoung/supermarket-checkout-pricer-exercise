@@ -1,6 +1,7 @@
 package dev.ted.supermarket.application;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartService {
@@ -9,7 +10,7 @@ public class CartService {
 
     private BigDecimal total = BigDecimal.ZERO;
     private boolean isEmpty = true;
-    private String upc;
+    private List<String> products = new ArrayList<>();
 
     public CartService(ProductPricer productPricer) {
         this.productPricer = productPricer;
@@ -20,14 +21,14 @@ public class CartService {
     }
 
     public void addProduct(String upc) {
-        this.upc = upc;
+        products.add(upc);
         total = total.add(productPricer.priceFor(upc));
         isEmpty = false;
     }
 
     public Receipt finalizeOrder() {
         requireCartNotEmpty();
-        Receipt receipt = new Receipt(total, List.of(upc));
+        Receipt receipt = new Receipt(total, products);
         total = BigDecimal.ZERO;
         isEmpty = true;
         return receipt;
