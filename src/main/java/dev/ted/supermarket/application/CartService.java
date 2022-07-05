@@ -1,6 +1,7 @@
 package dev.ted.supermarket.application;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 
 public class CartService {
 
@@ -23,7 +24,10 @@ public class CartService {
     }
 
     public Receipt finalizeOrder() {
-        Receipt receipt = new Receipt(total);
+        if (isEmpty) {
+            throw new NoProductsInCartException();
+        }
+        Receipt receipt = new Receipt(total, Collections.emptyList());
         total = BigDecimal.ZERO;
         isEmpty = true;
         return receipt;
