@@ -1,5 +1,7 @@
 package dev.ted.supermarket.application;
 
+import dev.ted.supermarket.application.port.ProductPricer;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;

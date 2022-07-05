@@ -1,5 +1,6 @@
 package dev.ted.supermarket.application;
 
+import dev.ted.supermarket.domain.Receipt;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

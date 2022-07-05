@@ -1,4 +1,4 @@
-package dev.ted.supermarket.application;
+package dev.ted.supermarket.application.port;
 
 import java.math.BigDecimal;
 

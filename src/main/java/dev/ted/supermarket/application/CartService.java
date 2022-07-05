@@ -1,5 +1,8 @@
 package dev.ted.supermarket.application;
 
+import dev.ted.supermarket.application.port.ProductPricer;
+import dev.ted.supermarket.domain.Receipt;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +31,12 @@ public class CartService {
 
     public Receipt finalizeOrder() {
         requireCartNotEmpty();
+
         Receipt receipt = new Receipt(total, products);
+
         total = BigDecimal.ZERO;
         isEmpty = true;
+
         return receipt;
     }
 
