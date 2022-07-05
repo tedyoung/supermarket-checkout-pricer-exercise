@@ -10,7 +10,9 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
-        CartService cartService = new CartService(new ProductPricerStub("9456", BigDecimal.valueOf(3), "0123", BigDecimal.valueOf(1)));
+        ProductPricerStub productPricer = new ProductPricerStub(
+                "0123", BigDecimal.valueOf(1));
+        CartService cartService = new CartService(productPricer);
         cartService.addProduct("0123");
 
         cartService.finalizeOrder();
@@ -23,7 +25,9 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
-        CartService cartService = new CartService(new ProductPricerStub("9456", BigDecimal.valueOf(3), "0123", BigDecimal.valueOf(1)));
+        ProductPricerStub productPricer = new ProductPricerStub(
+                "0123", BigDecimal.valueOf(1));
+        CartService cartService = new CartService(productPricer);
         cartService.addProduct("0123");
 
         Receipt receipt = cartService.finalizeOrder();
