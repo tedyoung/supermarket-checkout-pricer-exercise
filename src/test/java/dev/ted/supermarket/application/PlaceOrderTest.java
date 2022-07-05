@@ -34,7 +34,7 @@ public class PlaceOrderTest {
                 .isInstanceOf(NoProductsInCartException.class);
     }
 
-//    @Test
+    @Test
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
         ProductPricerStub productPricer = new ProductPricerStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
