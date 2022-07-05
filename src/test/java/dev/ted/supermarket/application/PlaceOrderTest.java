@@ -2,14 +2,14 @@ package dev.ted.supermarket.application;
 
 import org.junit.jupiter.api.Test;
 
-import static dev.ted.supermarket.application.ProductPricer.TOOTHBRUSH_UPC;
+import static dev.ted.supermarket.application.ProductPricerStub.TOOTHBRUSH_UPC;
 import static org.assertj.core.api.Assertions.*;
 
 public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
-        CartService cartService = new CartService(new ProductPricer());
+        CartService cartService = new CartService(new ProductPricerStub());
         cartService.addProduct(TOOTHBRUSH_UPC);
 
         cartService.finalizeOrder();
@@ -22,7 +22,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
-        CartService cartService = new CartService(new ProductPricer());
+        CartService cartService = new CartService(new ProductPricerStub());
         cartService.addProduct(TOOTHBRUSH_UPC);
 
         Receipt receipt = cartService.finalizeOrder();
