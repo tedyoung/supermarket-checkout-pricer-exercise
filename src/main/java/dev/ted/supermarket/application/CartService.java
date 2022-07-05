@@ -24,9 +24,7 @@ public class CartService {
     }
 
     public Receipt finalizeOrder() {
-        if (isEmpty) {
-            throw new NoProductsInCartException();
-        }
+        requireCartNotEmpty();
         Receipt receipt = new Receipt(total, Collections.emptyList());
         total = BigDecimal.ZERO;
         isEmpty = true;
@@ -35,5 +33,11 @@ public class CartService {
 
     public boolean isEmpty() {
         return isEmpty;
+    }
+
+    private void requireCartNotEmpty() {
+        if (isEmpty) {
+            throw new NoProductsInCartException();
+        }
     }
 }
