@@ -16,7 +16,14 @@ public class Cart {
     public boolean add(String upc, BigDecimal productPrice) {
         isEmpty = false;
         total = total.add(productPrice);
+        if (products.contains(upc)) {
+            total = total.subtract(productPrice.divide(BigDecimal.valueOf(2)));
+        }
         return products.add(upc);
+    }
+
+    public BigDecimal total() {
+        return total;
     }
 
     public boolean isEmpty() {
@@ -27,10 +34,6 @@ public class Cart {
         if (isEmpty) {
             throw new NoProductsInCartException();
         }
-    }
-
-    public BigDecimal total() {
-        return total;
     }
 
     public Receipt receipt() {
