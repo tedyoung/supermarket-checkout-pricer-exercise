@@ -10,11 +10,9 @@ import java.util.List;
 // Order, Bag, Scale
 public class Cart {
     private final List<String> products = new ArrayList<String>();
-    private boolean isEmpty = true;
     private BigDecimal total = BigDecimal.ZERO;
 
     public boolean add(String upc, BigDecimal productPrice) {
-        isEmpty = false;
         total = total.add(productPrice);
         if (products.contains(upc)) {
             total = total.subtract(productPrice.divide(BigDecimal.valueOf(2)));
@@ -27,11 +25,11 @@ public class Cart {
     }
 
     public boolean isEmpty() {
-        return isEmpty;
+        return products.isEmpty();
     }
 
     public void requireCartNotEmpty() {
-        if (isEmpty) {
+        if (isEmpty()) {
             throw new NoProductsInCartException();
         }
     }
