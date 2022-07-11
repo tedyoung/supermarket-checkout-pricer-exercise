@@ -11,15 +11,20 @@ public class Cart {
     private BigDecimal total = BigDecimal.ZERO;
 
     public boolean add(String upc, BigDecimal productPrice) {
-        total = total.add(productPrice);
-        discountForDuplicateItem(upc, productPrice);
+        BigDecimal price = discountedProductPrice(upc, productPrice);
+        if (products.contains(upc)) {
+            price = productPrice.divide(BigDecimal.valueOf(2));
+        }
+        total = total.add(price);
         return products.add(upc);
     }
 
-    private void discountForDuplicateItem(String upc, BigDecimal productPrice) {
-        if (products.contains(upc)) {
-            total = total.subtract(productPrice.divide(BigDecimal.valueOf(2)));
+    private BigDecimal discountedProductPrice(String upc, BigDecimal productPrice) {
+        BigDecimal actualPrice = productPrice;
+        if (upc.equals("0987")) {
+            actualPrice = productPrice.multiply(BigDecimal.valueOf(0.9));
         }
+        return actualPrice;
     }
 
     public BigDecimal total() {
