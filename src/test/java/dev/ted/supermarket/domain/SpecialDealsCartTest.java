@@ -1,6 +1,6 @@
-package dev.ted.supermarket.application;
+package dev.ted.supermarket.domain;
 
-import dev.ted.supermarket.domain.Cart;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -18,6 +18,12 @@ public class SpecialDealsCartTest {
 
         assertThat(cart.total())
                 .isEqualTo("1.5");
+    }
+
+    @Test
+    @Disabled
+    public void tenPercentDiscountOnCertainItem() throws Exception {
+
     }
 
 }

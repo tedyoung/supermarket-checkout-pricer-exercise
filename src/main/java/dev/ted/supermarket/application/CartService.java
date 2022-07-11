@@ -26,7 +26,7 @@ public class CartService {
     }
 
     public Receipt finalizeOrder() {
-        cart.requireCartNotEmpty();
+        requireCartNotEmpty();
 
         Receipt receipt = cart.receipt();
 
@@ -37,6 +37,12 @@ public class CartService {
 
     public boolean isEmpty() {
         return cart.isEmpty();
+    }
+
+    private void requireCartNotEmpty() {
+        if (cart.isEmpty()) {
+            throw new NoProductsInCartException();
+        }
     }
 
 }

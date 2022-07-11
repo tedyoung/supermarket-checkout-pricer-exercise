@@ -1,6 +1,4 @@
-package dev.ted.supermarket.application;
-
-import dev.ted.supermarket.application.port.ProductPriceFetcher;
+package dev.ted.supermarket.application.port;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
