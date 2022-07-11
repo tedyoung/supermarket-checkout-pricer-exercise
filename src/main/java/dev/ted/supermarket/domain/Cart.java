@@ -10,13 +10,13 @@ public class Cart {
     private final List<String> products = new ArrayList<>();
     private BigDecimal total = BigDecimal.ZERO;
 
-    public boolean add(String upc, BigDecimal productPrice) {
-        BigDecimal price = discountedProductPrice(upc, productPrice);
-        if (products.contains(upc)) {
-            price = productPrice.divide(BigDecimal.valueOf(2));
+    public boolean add(Product product) {
+        BigDecimal price = discountedProductPrice(product.upc(), product.productPrice());
+        if (products.contains(product.upc())) {
+            price = product.productPrice().divide(BigDecimal.valueOf(2));
         }
         total = total.add(price);
-        return products.add(upc);
+        return products.add(product.upc());
     }
 
     private BigDecimal discountedProductPrice(String upc, BigDecimal productPrice) {

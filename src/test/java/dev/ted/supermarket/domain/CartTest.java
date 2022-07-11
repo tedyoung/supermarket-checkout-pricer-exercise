@@ -21,10 +21,10 @@ class CartTest {
     }
 
     @Test
-    public void addToothbrushThenCartTotalPriceIsOneDollar() throws Exception {
+    public void addToothbrushProductThenCartTotalPriceIsOneDollar() throws Exception {
         Cart cart = new Cart();
 
-        cart.add(TOOTHBRUSH_UPC, BigDecimal.ONE);
+        cart.add(new Product(TOOTHBRUSH_UPC, BigDecimal.ONE));
 
         assertThat(cart.total())
                 .isEqualTo("1");
@@ -36,7 +36,7 @@ class CartTest {
     public void addProductThenReceiptHasProductWithTotalPrice() throws Exception {
         Cart cart = new Cart();
 
-        cart.add(TOOTHBRUSH_UPC, BigDecimal.ONE);
+        cart.add(new Product(TOOTHBRUSH_UPC, BigDecimal.ONE));
 
         assertThat(cart.receipt())
                 .isEqualTo(new Receipt(BigDecimal.ONE,

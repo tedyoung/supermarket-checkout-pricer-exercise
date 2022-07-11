@@ -15,8 +15,8 @@ public class SpecialDealsCartTest {
     public void twoSameItemsThenSecondIsDiscountedHalfOff() throws Exception {
         Cart cart = new Cart();
 
-        cart.add("0123", BigDecimal.ONE);
-        cart.add("0123", BigDecimal.ONE);
+        cart.add(new Product("0123", BigDecimal.ONE));
+        cart.add(new Product("0123", BigDecimal.ONE));
 
         assertThat(cart.total())
                 .isEqualTo("1.5");
@@ -26,7 +26,7 @@ public class SpecialDealsCartTest {
     public void tenPercentDiscountOnCertainItem() throws Exception {
         Cart cart = new Cart();
 
-        cart.add(TEN_PERCENT_DISCOUNTED_UPC, BigDecimal.TEN);
+        cart.add(new Product(TEN_PERCENT_DISCOUNTED_UPC, BigDecimal.TEN));
 
         assertThat(cart.total())
                 .isEqualByComparingTo(BigDecimal.valueOf(9));
@@ -37,8 +37,8 @@ public class SpecialDealsCartTest {
     public void twoItemsThatHaveTenPercentDiscountOnlyHalfOffDiscountApplies() throws Exception {
         Cart cart = new Cart();
 
-        cart.add(TEN_PERCENT_DISCOUNTED_UPC, BigDecimal.TEN);
-        cart.add(TEN_PERCENT_DISCOUNTED_UPC, BigDecimal.TEN);
+        cart.add(new Product(TEN_PERCENT_DISCOUNTED_UPC, BigDecimal.TEN));
+        cart.add(new Product(TEN_PERCENT_DISCOUNTED_UPC, BigDecimal.TEN));
 
         assertThat(cart.total())
                 .isEqualTo("15");

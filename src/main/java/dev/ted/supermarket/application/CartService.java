@@ -2,6 +2,7 @@ package dev.ted.supermarket.application;
 
 import dev.ted.supermarket.application.port.ProductPriceFetcher;
 import dev.ted.supermarket.domain.Cart;
+import dev.ted.supermarket.domain.Product;
 import dev.ted.supermarket.domain.Receipt;
 
 import java.math.BigDecimal;
@@ -22,7 +23,7 @@ public class CartService {
     public void addProduct(String upc) {
         // "coordinate" fetching the price from an external provider
         BigDecimal productPrice = productPriceFetcher.priceFor(upc);
-        cart.add(upc, productPrice);
+        cart.add(new Product(upc, productPrice));
     }
 
     public Receipt finalizeOrder() {
