@@ -1,6 +1,5 @@
 package dev.ted.supermarket.domain;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -19,7 +18,19 @@ public class SpecialDealsCartTest {
         cart.add(new Product("0123", BigDecimal.ONE));
 
         assertThat(cart.total())
-                .isEqualTo("1.5");
+                .isEqualByComparingTo("1.5");
+    }
+
+    @Test
+    public void threeSameItemsThenSecondAndThirdAreDiscountedHalfOff() throws Exception {
+        Cart cart = new Cart();
+
+        cart.add(new Product("0123", BigDecimal.ONE));
+        cart.add(new Product("0123", BigDecimal.ONE));
+        cart.add(new Product("0123", BigDecimal.ONE));
+
+        assertThat(cart.total())
+                .isEqualByComparingTo("2");
     }
 
     @Test
@@ -33,7 +44,6 @@ public class SpecialDealsCartTest {
     }
 
     @Test
-    @Disabled
     public void twoItemsThatHaveTenPercentDiscountOnlyHalfOffDiscountApplies() throws Exception {
         Cart cart = new Cart();
 
@@ -41,7 +51,7 @@ public class SpecialDealsCartTest {
         cart.add(new Product(TEN_PERCENT_DISCOUNTED_UPC, BigDecimal.TEN));
 
         assertThat(cart.total())
-                .isEqualTo("15");
+                .isEqualByComparingTo("15");
     }
 
 }

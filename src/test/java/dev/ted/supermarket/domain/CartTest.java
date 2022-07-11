@@ -27,7 +27,7 @@ class CartTest {
         cart.add(new Product(TOOTHBRUSH_UPC, BigDecimal.ONE));
 
         assertThat(cart.total())
-                .isEqualTo("1");
+                .isEqualByComparingTo("1");
         assertThat(cart.isEmpty())
                 .isFalse();
     }

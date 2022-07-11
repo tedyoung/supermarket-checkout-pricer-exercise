@@ -23,7 +23,7 @@ public class AddProductViaCartServiceTest {
         cartService.addProduct(TOOTHPASTE_UPC);
 
         assertThat(cartService.total())
-                .isEqualTo(BigDecimal.valueOf(1 + 3)); // evident data
+                .isEqualByComparingTo(BigDecimal.valueOf(1 + 3)); // evident data
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AddProductViaCartServiceTest {
         cartService.addProduct(TOOTHPASTE_UPC);
 
         assertThat(cartService.total())
-                .isEqualTo("3");
+                .isEqualByComparingTo("3");
     }
 
 }

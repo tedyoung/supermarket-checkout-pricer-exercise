@@ -47,7 +47,7 @@ public class PlaceOrderTest {
         Receipt receipt = cartService.finalizeOrder();
 
         assertThat(receipt.total())
-                .isEqualTo("1");
+                .isEqualByComparingTo("1");
         assertThat(receipt.products())
                 .containsExactly(TOOTHBRUSH_UPC);
     }
@@ -64,7 +64,7 @@ public class PlaceOrderTest {
         Receipt receipt = cartService.finalizeOrder();
 
         assertThat(receipt.total())
-                .isEqualTo(BigDecimal.valueOf(1 + 3));
+                .isEqualByComparingTo(BigDecimal.valueOf(1 + 3));
         assertThat(receipt.products())
                 .containsExactly(TOOTHBRUSH_UPC,
                                  TOOTHPASTE_UPC);
