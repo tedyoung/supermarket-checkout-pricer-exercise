@@ -9,43 +9,33 @@ import java.math.BigDecimal;
 public class CartService {
 
     private final ProductPriceFetcher productPriceFetcher;
-    private final Cart cart = new Cart();
-
-    private BigDecimal total = BigDecimal.ZERO;
-    private boolean isEmpty = true;
+    private Cart cart = new Cart();
 
     public CartService(ProductPriceFetcher productPriceFetcher) {
         this.productPriceFetcher = productPriceFetcher;
     }
 
     public BigDecimal total() {
-        return total;
+        return cart.total();
     }
 
     public void addProduct(String upc) {
-        cart.add(upc);
-        total = total.add(productPriceFetcher.priceFor(upc));
-        isEmpty = false;
+        BigDecimal productPrice = productPriceFetcher.priceFor(upc);
+        cart.add(upc, productPrice);
     }
 
     public Receipt finalizeOrder() {
-        requireCartNotEmpty();
+        cart.requireCartNotEmpty();
 
-        Receipt receipt = new Receipt(total, cart.products());
+        Receipt receipt = cart.receipt();
 
-        total = BigDecimal.ZERO;
-        isEmpty = true;
+        cart = new Cart();
 
         return receipt;
     }
 
     public boolean isEmpty() {
-        return isEmpty;
+        return cart.isEmpty();
     }
 
-    private void requireCartNotEmpty() {
-        if (isEmpty) {
-            throw new NoProductsInCartException();
-        }
-    }
 }
