@@ -14,7 +14,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub(
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
         CartService cartService = new CartService(productPricer);
         cartService.addProduct(TOOTHBRUSH_UPC);
@@ -29,7 +29,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithNoProductsFinalizeOrderThrowsException() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub();
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub();
         CartService cartService = new CartService(productPricer);
 
         assertThatThrownBy(cartService::finalizeOrder)
@@ -38,7 +38,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub(
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
         CartService cartService = new CartService(productPricer);
         cartService.addProduct(TOOTHBRUSH_UPC);
@@ -53,7 +53,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithTwoProductsFinalizeOrderReturnsReceiptWithAllProducts() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub(
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1),
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
         CartService cartService = new CartService(productPricer);

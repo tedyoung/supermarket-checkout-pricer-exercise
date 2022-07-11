@@ -13,7 +13,7 @@ public class AddProductToCartTest {
 
     @Test
     public void cartTotalPriceStartsAtZeroAndIsEmpty() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub();
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub();
         CartService cartService = new CartService(productPricer);
 
         assertThat(cartService.total())
@@ -24,7 +24,7 @@ public class AddProductToCartTest {
 
     @Test
     public void addToothbrushThenCartTotalPriceIsOneDollar() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub(
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
         CartService cartService = new CartService(productPricer);
 
@@ -39,7 +39,7 @@ public class AddProductToCartTest {
 
     @Test
     public void twoItemsThenCartTotalPriceIsSumOfProductPrices() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub(
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1),
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
         CartService cartService = new CartService(productPricer);
@@ -53,7 +53,7 @@ public class AddProductToCartTest {
 
     @Test
     public void addToothpasteThenCartTotalPriceIsThreeDollars() throws Exception {
-        ProductPricerStub productPricer = new ProductPricerStub(
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
         CartService cartService = new CartService(productPricer);
 

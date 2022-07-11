@@ -1,6 +1,6 @@
 package dev.ted.supermarket.application;
 
-import dev.ted.supermarket.application.port.ProductPricer;
+import dev.ted.supermarket.application.port.ProductPriceFetcher;
 import dev.ted.supermarket.domain.Receipt;
 
 import java.math.BigDecimal;
@@ -9,14 +9,14 @@ import java.util.List;
 
 public class CartService {
 
-    private final ProductPricer productPricer;
+    private final ProductPriceFetcher productPriceFetcher;
 
     private BigDecimal total = BigDecimal.ZERO;
     private boolean isEmpty = true;
     private List<String> products = new ArrayList<>();
 
-    public CartService(ProductPricer productPricer) {
-        this.productPricer = productPricer;
+    public CartService(ProductPriceFetcher productPriceFetcher) {
+        this.productPriceFetcher = productPriceFetcher;
     }
 
     public BigDecimal total() {
@@ -25,7 +25,7 @@ public class CartService {
 
     public void addProduct(String upc) {
         products.add(upc);
-        total = total.add(productPricer.priceFor(upc));
+        total = total.add(productPriceFetcher.priceFor(upc));
         isEmpty = false;
     }
 

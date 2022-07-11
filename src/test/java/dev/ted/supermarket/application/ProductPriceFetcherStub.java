@@ -1,25 +1,25 @@
 package dev.ted.supermarket.application;
 
-import dev.ted.supermarket.application.port.ProductPricer;
+import dev.ted.supermarket.application.port.ProductPriceFetcher;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductPricerStub implements ProductPricer {
+public class ProductPriceFetcherStub implements ProductPriceFetcher {
 
     private final Map<String, BigDecimal> productToPrice = new HashMap<>();
 
-    public ProductPricerStub() {
+    public ProductPriceFetcherStub() {
     }
 
-    public ProductPricerStub(String upc, BigDecimal price,
-                             String upc2, BigDecimal price2) {
+    public ProductPriceFetcherStub(String upc, BigDecimal price,
+                                   String upc2, BigDecimal price2) {
         productToPrice.put(upc, price);
         productToPrice.put(upc2, price2);
     }
 
-    public ProductPricerStub(String upc, BigDecimal price) {
+    public ProductPriceFetcherStub(String upc, BigDecimal price) {
         productToPrice.put(upc, price);
     }
 
