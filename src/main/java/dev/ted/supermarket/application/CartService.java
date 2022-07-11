@@ -20,6 +20,7 @@ public class CartService {
     }
 
     public void addProduct(String upc) {
+        // "coordinate" fetching the price from an external provider
         BigDecimal productPrice = productPriceFetcher.priceFor(upc);
         cart.add(upc, productPrice);
     }

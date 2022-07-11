@@ -1,5 +1,6 @@
 package dev.ted.supermarket.application;
 
+import dev.ted.supermarket.domain.Cart;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +13,12 @@ public class SpecialDealsCartTest {
     @Test
     @Disabled
     public void twoSameItemsThenSecondIsDiscountedHalfOff() throws Exception {
-        CartService cartService = new CartService(new ProductPriceFetcherStub("9456", BigDecimal.valueOf(3), "0123", BigDecimal.valueOf(1)));
+        Cart cart = new Cart();
 
-        cartService.addProduct("0123");
-        cartService.addProduct("0123");
+        cart.add("0123", BigDecimal.ONE);
+        cart.add("0123", BigDecimal.ONE);
 
-        assertThat(cartService.total())
+        assertThat(cart.total())
                 .isEqualTo("1.5");
     }
 

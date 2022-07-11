@@ -13,20 +13,10 @@ public class Cart {
     private boolean isEmpty = true;
     private BigDecimal total = BigDecimal.ZERO;
 
-    @Deprecated // return Stream<String> instead
-    public List<String> products() {
-        return List.copyOf(products);
-    }
-
     public boolean add(String upc, BigDecimal productPrice) {
         isEmpty = false;
         total = total.add(productPrice);
         return products.add(upc);
-    }
-
-    public void makeEmpty() {
-        isEmpty = true;
-        total = BigDecimal.ZERO;
     }
 
     public boolean isEmpty() {
@@ -44,6 +34,6 @@ public class Cart {
     }
 
     public Receipt receipt() {
-        return new Receipt(total(), products());
+        return new Receipt(total, List.copyOf(products));
     }
 }
