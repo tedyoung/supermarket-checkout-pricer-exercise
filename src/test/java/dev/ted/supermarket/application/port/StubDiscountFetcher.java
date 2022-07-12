@@ -7,6 +7,14 @@ public class StubDiscountFetcher implements DiscountFetcher {
     private String discountedUpc;
     private DiscountRule discountRule;
 
+    public static DiscountFetcher noDiscounts() {
+        return new StubDiscountFetcher();
+    }
+
+    private StubDiscountFetcher() {
+        // no discounts for anything
+    }
+
     public StubDiscountFetcher(String discountedUpc, DiscountRule discountRule) {
         this.discountedUpc = discountedUpc;
         this.discountRule = discountRule;

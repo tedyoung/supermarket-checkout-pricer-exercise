@@ -21,7 +21,8 @@ public class AddProductViaCartServiceTest {
         ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1),
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
-        CartService cartService = new CartService(productPricer, new StubDiscountFetcher("0987", DiscountRule.TEN_PERCENT_OFF));
+        CartService cartService = new CartService(productPricer, 
+                                                  StubDiscountFetcher.noDiscounts());
 
         cartService.addProduct(TOOTHBRUSH_UPC);
         cartService.addProduct(TOOTHPASTE_UPC);
@@ -34,7 +35,8 @@ public class AddProductViaCartServiceTest {
     public void addToothpasteThenCartTotalPriceIsThreeDollars() throws Exception {
         ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
-        CartService cartService = new CartService(productPricer, new StubDiscountFetcher("0987", DiscountRule.TEN_PERCENT_OFF));
+        CartService cartService = new CartService(productPricer,
+                                                  StubDiscountFetcher.noDiscounts());
 
         cartService.addProduct(TOOTHPASTE_UPC);
 
