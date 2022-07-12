@@ -29,16 +29,21 @@ public class Cart {
     }
 
     private boolean eligibleForTenPercentDiscount(Product product) {
-        if (products.stream().filter(p -> p.equals(product)).count() > 1) {
-            return false;
-        }
-        return product.upc().equals("0987");
+        return product.upc().equals("0987")
+                && onlyOneOf(product);
+    }
+
+    private boolean onlyOneOf(Product product) {
+        return products.stream()
+                       .filter(p -> p.equals(product))
+                       .count() == 1;
     }
 
     private boolean eligibleForHalfOffDiscount(Product product) {
         return eligibleProductsForHalfOffDiscount.contains(product);
     }
 
+    // Query method: does not change EXTERNALLY OBSERVABLE state
     public BigDecimal total() {
         eligibleProductsForHalfOffDiscount = new HashSet<>();
         return products.stream()
