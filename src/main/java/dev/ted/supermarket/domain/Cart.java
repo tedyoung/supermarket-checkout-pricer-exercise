@@ -10,7 +10,7 @@ import java.util.Set;
 // Order, Bag, Scale
 public class Cart {
     private final List<Product> products = new ArrayList<>();
-    private Set<Product> eligibleProducts;
+    private Set<Product> eligibleProductsForHalfOffDiscount; // Primitive Obsession
 
     public void add(Product product) {
         products.add(product);
@@ -18,26 +18,29 @@ public class Cart {
 
     private BigDecimal discountedIndividualProductPrice(Product product) {
         BigDecimal actualPrice = product.productPrice();
-        if (product.upc().equals("0987")) {
-            return actualPrice.multiply(BigDecimal.valueOf(0.9));
-        }
-        return discountedGroupProductPrice(product);
-    }
-
-    private BigDecimal discountedGroupProductPrice(Product product) {
         if (eligibleForHalfOffDiscount(product)) {
             return product.productPrice().divide(BigDecimal.valueOf(2));
         }
-        eligibleProducts.add(product);
+        if (eligibleForTenPercentDiscount(product)) {
+            return actualPrice.multiply(BigDecimal.valueOf(0.9));
+        }
+        eligibleProductsForHalfOffDiscount.add(product);
         return product.productPrice();
     }
 
+    private boolean eligibleForTenPercentDiscount(Product product) {
+        if (products.stream().filter(p -> p.equals(product)).count() > 1) {
+            return false;
+        }
+        return product.upc().equals("0987");
+    }
+
     private boolean eligibleForHalfOffDiscount(Product product) {
-        return eligibleProducts.contains(product);
+        return eligibleProductsForHalfOffDiscount.contains(product);
     }
 
     public BigDecimal total() {
-        eligibleProducts = new HashSet<>();
+        eligibleProductsForHalfOffDiscount = new HashSet<>();
         return products.stream()
                        .map(this::discountedIndividualProductPrice)
                        .reduce(BigDecimal::add)
