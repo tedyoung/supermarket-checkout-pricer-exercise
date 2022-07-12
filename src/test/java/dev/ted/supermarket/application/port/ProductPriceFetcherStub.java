@@ -21,10 +21,11 @@ public class ProductPriceFetcherStub implements ProductPriceFetcher {
         productToPrice.put(upc, price);
     }
 
-    @Override public BigDecimal priceFor(String upc) {
+    @Override
+    public BigDecimal priceFor(String upc) {
         if (productToPrice.containsKey(upc)) {
             return productToPrice.get(upc);
         }
-        return BigDecimal.ZERO;
+        throw new ProductNotFound(upc);
     }
 }

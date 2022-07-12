@@ -38,5 +38,17 @@ public class AddProductViaCartServiceTest {
                 .isEqualByComparingTo("3");
     }
 
+    @Test
+    public void whereDiscountServiceHas10PercentDiscountRuleThenRuleIsApplied() throws Exception {
+        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
+                TOOTHPASTE_UPC, BigDecimal.valueOf(8));
+        CartService cartService = new CartService(productPricer);
+
+        cartService.addProduct(TOOTHPASTE_UPC);
+
+        assertThat(cartService.total())
+                .isEqualByComparingTo("7.2");
+    }
+
 }
 
