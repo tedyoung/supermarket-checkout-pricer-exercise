@@ -17,7 +17,7 @@ public class PlaceOrderTest {
     public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
         ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
-        CartService cartService = new CartService(productPricer);
+        CartService cartService = new CartService(productPricer, new StubDiscountFetcher());
         cartService.addProduct(TOOTHBRUSH_UPC);
 
         cartService.finalizeOrder();
@@ -31,7 +31,7 @@ public class PlaceOrderTest {
     @Test
     public void cartWithNoProductsFinalizeOrderThrowsException() throws Exception {
         ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub();
-        CartService cartService = new CartService(productPricer);
+        CartService cartService = new CartService(productPricer, new StubDiscountFetcher());
 
         assertThatThrownBy(cartService::finalizeOrder)
                 .isInstanceOf(NoProductsInCartException.class);
@@ -41,7 +41,7 @@ public class PlaceOrderTest {
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
         ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
-        CartService cartService = new CartService(productPricer);
+        CartService cartService = new CartService(productPricer, new StubDiscountFetcher());
         cartService.addProduct(TOOTHBRUSH_UPC);
 
         Receipt receipt = cartService.finalizeOrder();
@@ -57,7 +57,7 @@ public class PlaceOrderTest {
         ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1),
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
-        CartService cartService = new CartService(productPricer);
+        CartService cartService = new CartService(productPricer, new StubDiscountFetcher());
         cartService.addProduct(TOOTHBRUSH_UPC);
         cartService.addProduct(TOOTHPASTE_UPC);
 

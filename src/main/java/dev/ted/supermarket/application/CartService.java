@@ -11,11 +11,12 @@ import java.math.BigDecimal;
 public class CartService {
 
     private final ProductPriceFetcher productPriceFetcher;
-    private final StubDiscountFetcher stubDiscountFetcher = new StubDiscountFetcher();
+    private final StubDiscountFetcher stubDiscountFetcher;
     private Cart cart = new Cart();
 
-    public CartService(ProductPriceFetcher productPriceFetcher) {
+    public CartService(ProductPriceFetcher productPriceFetcher, StubDiscountFetcher discountFetcher) {
         this.productPriceFetcher = productPriceFetcher;
+        this.stubDiscountFetcher = discountFetcher;
     }
 
     public BigDecimal total() {
