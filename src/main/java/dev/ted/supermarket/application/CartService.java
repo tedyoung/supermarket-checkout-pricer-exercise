@@ -1,5 +1,6 @@
 package dev.ted.supermarket.application;
 
+import dev.ted.supermarket.application.port.DiscountFetcher;
 import dev.ted.supermarket.application.port.ProductPriceFetcher;
 import dev.ted.supermarket.domain.Cart;
 import dev.ted.supermarket.domain.DiscountRule;
@@ -11,12 +12,13 @@ import java.math.BigDecimal;
 public class CartService {
 
     private final ProductPriceFetcher productPriceFetcher;
-    private final StubDiscountFetcher stubDiscountFetcher;
+    private final DiscountFetcher discountFetcher;
     private Cart cart = new Cart();
 
-    public CartService(ProductPriceFetcher productPriceFetcher, StubDiscountFetcher discountFetcher) {
+    public CartService(ProductPriceFetcher productPriceFetcher,
+                       DiscountFetcher discountFetcher) {
         this.productPriceFetcher = productPriceFetcher;
-        this.stubDiscountFetcher = discountFetcher;
+        this.discountFetcher = discountFetcher;
     }
 
     public BigDecimal total() {
@@ -26,7 +28,7 @@ public class CartService {
     public void addProduct(String upc) {
         // "coordinate" fetching the price from an external provider
         BigDecimal productPrice = productPriceFetcher.priceFor(upc);
-        DiscountRule discountRule = stubDiscountFetcher.discountRuleFor(upc);
+        DiscountRule discountRule = discountFetcher.discountRuleFor(upc);
         Product product = new Product(upc, productPrice, discountRule);
         cart.add(product);
     }

@@ -1,6 +1,7 @@
 package dev.ted.supermarket.application;
 
 import dev.ted.supermarket.application.port.ProductPriceFetcherStub;
+import dev.ted.supermarket.application.port.StubDiscountFetcher;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
