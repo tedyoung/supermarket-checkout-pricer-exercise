@@ -12,8 +12,8 @@ public class Cart {
     private final List<Product> products = new ArrayList<>();
     private Set<Product> eligibleProducts;
 
-    public boolean add(Product product) {
-        return products.add(product);
+    public void add(Product product) {
+        products.add(product);
     }
 
     private BigDecimal discountedIndividualProductPrice(Product product) {
