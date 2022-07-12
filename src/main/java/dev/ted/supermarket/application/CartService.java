@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 public class CartService {
 
     private final ProductPriceFetcher productPriceFetcher;
+    private final StubDiscountFetcher stubDiscountFetcher = new StubDiscountFetcher();
     private Cart cart = new Cart();
 
     public CartService(ProductPriceFetcher productPriceFetcher) {
@@ -24,16 +25,9 @@ public class CartService {
     public void addProduct(String upc) {
         // "coordinate" fetching the price from an external provider
         BigDecimal productPrice = productPriceFetcher.priceFor(upc);
-        DiscountRule discountRule = discountRuleFor(upc);
+        DiscountRule discountRule = stubDiscountFetcher.discountRuleFor(upc);
         Product product = new Product(upc, productPrice, discountRule);
         cart.add(product);
-    }
-
-    private DiscountRule discountRuleFor(String upc) {
-        if (upc.equals("0987")) {
-            return DiscountRule.TEN_PERCENT_OFF;
-        }
-        return DiscountRule.NONE;
     }
 
     public Receipt finalizeOrder() {
