@@ -16,6 +16,27 @@ public class Cart {
         products.add(product);
     }
 
+    public boolean isEmpty() {
+        return products.isEmpty();
+    }
+
+    public Receipt receipt() {
+        List<String> upcs = products
+                .stream()
+                .map(Product::upc)
+                .toList();
+        return new Receipt(total(), upcs);
+    }
+
+    // Query method: does not change EXTERNALLY OBSERVABLE state
+    public BigDecimal total() {
+        eligibleProductsForHalfOffDiscount = new HashSet<>();
+        return products.stream()
+                       .map(this::discountedIndividualProductPrice)
+                       .reduce(BigDecimal::add)
+                       .orElse(BigDecimal.ZERO);
+    }
+
     private BigDecimal discountedIndividualProductPrice(Product product) {
         BigDecimal actualPrice = product.productPrice();
         if (eligibleForHalfOffDiscount(product)) {
@@ -43,24 +64,4 @@ public class Cart {
         return eligibleProductsForHalfOffDiscount.contains(product);
     }
 
-    // Query method: does not change EXTERNALLY OBSERVABLE state
-    public BigDecimal total() {
-        eligibleProductsForHalfOffDiscount = new HashSet<>();
-        return products.stream()
-                       .map(this::discountedIndividualProductPrice)
-                       .reduce(BigDecimal::add)
-                       .orElse(BigDecimal.ZERO);
-    }
-
-    public boolean isEmpty() {
-        return products.isEmpty();
-    }
-
-    public Receipt receipt() {
-        List<String> upcs = products
-                .stream()
-                .map(Product::upc)
-                .toList();
-        return new Receipt(total(), upcs);
-    }
 }
