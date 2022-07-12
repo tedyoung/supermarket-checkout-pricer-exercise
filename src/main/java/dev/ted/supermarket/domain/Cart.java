@@ -50,7 +50,7 @@ public class Cart {
     }
 
     private boolean eligibleForTenPercentDiscount(Product product) {
-        return product.upc().equals("0987")
+        return product.discountRule() == DiscountRule.TEN_PERCENT_OFF
                 && onlyOneOf(product);
     }
 
