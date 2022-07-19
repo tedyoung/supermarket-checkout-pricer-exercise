@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProductScannerController {
@@ -23,7 +24,8 @@ public class ProductScannerController {
     }
 
     @PostMapping("/")
-    public String addProduct(String upc) {
+    public String addProduct(
+            @RequestParam(name = "upc", defaultValue = "") String upc) {
         if (upc.isBlank()) {
             return "redirect:/error";
         }

@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Tag("integration")
@@ -25,8 +26,11 @@ public class ProductScannerWebMvcTest {
 
     @Test
     public void postToRootPathIsRedirect() throws Exception {
-        mockMvc.perform(post("/"))
-               .andExpect(status().is3xxRedirection());
+        mockMvc.perform(post("/")
+                                .param("upc", "0123")
+               )
+               .andExpect(status().is3xxRedirection())
+               .andExpect(redirectedUrl("/"));
     }
 
 }
