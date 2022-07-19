@@ -22,4 +22,15 @@ class ProductScannerControllerTest {
                 .isTrue();
     }
 
+    @Test
+    public void addProductRedirectsToRoot() throws Exception {
+        ProductScannerController productScannerController =
+                new ProductScannerController();
+
+        String page = productScannerController.addProduct();
+
+        assertThat(page)
+                .isEqualTo("redirect:/");
+    }
+
 }

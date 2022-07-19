@@ -16,7 +16,7 @@ public class ProductScannerController {
 
     @PostMapping("/")
     public String addProduct() {
-        return "redirect:";
+        return "redirect:/";
     }
 
 }
