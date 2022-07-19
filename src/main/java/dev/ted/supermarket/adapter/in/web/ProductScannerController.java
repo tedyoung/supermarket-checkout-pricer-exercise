@@ -22,6 +22,7 @@ public class ProductScannerController {
 
     @PostMapping("/")
     public String addProduct(String upc) {
+        cartService.addProduct(upc);
         return "redirect:/";
     }
 

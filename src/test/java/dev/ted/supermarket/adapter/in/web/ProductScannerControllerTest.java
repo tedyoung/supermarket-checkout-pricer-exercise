@@ -1,16 +1,22 @@
 package dev.ted.supermarket.adapter.in.web;
 
 import dev.ted.supermarket.application.CartService;
-import org.junit.jupiter.api.Disabled;
+import dev.ted.supermarket.application.port.DiscountFetcher;
+import dev.ted.supermarket.application.port.ProductPriceFetcher;
+import dev.ted.supermarket.domain.DiscountRule;
 import org.junit.jupiter.api.Test;
 import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
+
+import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.*;
 
 class ProductScannerControllerTest {
 
     private static final String TOOTHPASTE_UPC = "9456";
+    private static final ProductPriceFetcher DUMMY_PRODUCT_PRICE_FETCHER = (upc) -> BigDecimal.ZERO;
+    private static final DiscountFetcher DUMMY_DISCOUNT_FETCHER = upc -> DiscountRule.NONE;
 
     @Test
     public void scanProductReturnsScanTemplate() throws Exception {
@@ -28,8 +34,10 @@ class ProductScannerControllerTest {
 
     @Test
     public void addProductRedirectsToRoot() throws Exception {
+        CartService cartService = new CartService(
+                DUMMY_PRODUCT_PRICE_FETCHER, DUMMY_DISCOUNT_FETCHER);
         ProductScannerController productScannerController =
-                new ProductScannerController(new CartService(null, null));
+                new ProductScannerController(cartService);
 
         String page = productScannerController.addProduct("");
 
@@ -38,9 +46,9 @@ class ProductScannerControllerTest {
     }
 
     @Test
-    @Disabled
     public void postValidUpcThenProductAddedToCard() throws Exception {
-        CartService cartService = new CartService(null, null);
+        CartService cartService = new CartService(
+                DUMMY_PRODUCT_PRICE_FETCHER, DUMMY_DISCOUNT_FETCHER);
         ProductScannerController productScannerController =
                 new ProductScannerController(cartService);
 
