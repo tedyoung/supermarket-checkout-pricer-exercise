@@ -19,7 +19,7 @@ class ProductScannerControllerTest {
     private static final DiscountFetcher DUMMY_DISCOUNT_FETCHER = upc -> DiscountRule.NONE;
 
     @Test
-    public void scanProductReturnsScanTemplate() throws Exception {
+    public void scanProductReturnsScanTemplateWithEmptyUpcAndCartTotal() throws Exception {
         ProductScannerController productScannerController =
                 new ProductScannerController(new CartService(null, null));
         Model model = new ConcurrentModel();
@@ -30,6 +30,9 @@ class ProductScannerControllerTest {
                 .isEqualTo("scan");
         assertThat(model.containsAttribute("upc"))
                 .isTrue();
+        String total = (String) model.getAttribute("total");
+        assertThat(total)
+                .isEqualTo("0");
     }
 
     @Test

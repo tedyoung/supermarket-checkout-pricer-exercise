@@ -20,6 +20,7 @@ public class ProductScannerController {
     @GetMapping("/")
     public String scanProduct(Model model) {
         model.addAttribute("upc", "");
+        model.addAttribute("total", cartService.total().toPlainString());
         return "scan";
     }
 
