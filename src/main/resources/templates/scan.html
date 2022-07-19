@@ -8,11 +8,13 @@
 </head>
 <body>
 
+<h2>Total: $<span th:text="${total}">25</span></h2>
+
 <form method="post" action="#" th:action="@{/}">
     <p>
         <label>
             UPC:
-            <input type="text" th:field="${upc}">
+            <input type="text" name="upc" th:value="${upc}">
         </label>
     </p>
     <button type="submit">Add Product</button>

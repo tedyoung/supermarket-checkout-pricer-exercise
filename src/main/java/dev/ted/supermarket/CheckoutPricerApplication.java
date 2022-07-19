@@ -17,7 +17,7 @@ public class CheckoutPricerApplication {
 
 	@Bean
 	public CartService cartService() {
-		return new CartService(upc -> BigDecimal.ZERO,
+		return new CartService(upc -> BigDecimal.ONE,
 							   upc -> DiscountRule.NONE);
 	}
 
