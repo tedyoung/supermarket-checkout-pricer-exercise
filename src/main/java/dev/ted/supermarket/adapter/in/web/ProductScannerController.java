@@ -24,6 +24,9 @@ public class ProductScannerController {
 
     @PostMapping("/")
     public String addProduct(String upc) {
+        if (upc.isBlank()) {
+            return "redirect:/error";
+        }
         cartService.addProduct(upc);
         return "redirect:/";
     }

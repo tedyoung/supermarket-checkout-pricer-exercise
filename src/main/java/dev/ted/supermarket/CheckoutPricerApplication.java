@@ -19,7 +19,6 @@ public class CheckoutPricerApplication {
 	public CartService cartService() {
 		return new CartService(upc -> BigDecimal.ZERO,
 							   upc -> DiscountRule.NONE);
-
 	}
 
 }

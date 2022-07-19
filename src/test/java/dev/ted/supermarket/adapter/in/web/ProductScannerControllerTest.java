@@ -34,12 +34,11 @@ class ProductScannerControllerTest {
 
     @Test
     public void addProductRedirectsToRoot() throws Exception {
-        CartService cartService = new CartService(
-                DUMMY_PRODUCT_PRICE_FETCHER, DUMMY_DISCOUNT_FETCHER);
+        CartService cartService = createCartServiceWithDummies();
         ProductScannerController productScannerController =
                 new ProductScannerController(cartService);
 
-        String page = productScannerController.addProduct("");
+        String page = productScannerController.addProduct(TOOTHPASTE_UPC);
 
         assertThat(page)
                 .isEqualTo("redirect:/");
@@ -47,8 +46,7 @@ class ProductScannerControllerTest {
 
     @Test
     public void postValidUpcThenProductAddedToCard() throws Exception {
-        CartService cartService = new CartService(
-                DUMMY_PRODUCT_PRICE_FETCHER, DUMMY_DISCOUNT_FETCHER);
+        CartService cartService = createCartServiceWithDummies();
         ProductScannerController productScannerController =
                 new ProductScannerController(cartService);
 
@@ -56,6 +54,23 @@ class ProductScannerControllerTest {
 
         assertThat(cartService.finalizeOrder().products())
                 .containsExactly(TOOTHPASTE_UPC);
+    }
+
+    @Test
+    public void postEmptyUpcThenRedirectToErrorPage() throws Exception {
+        CartService cartService = createCartServiceWithDummies();
+        ProductScannerController productScannerController =
+                new ProductScannerController(cartService);
+
+        String page = productScannerController.addProduct("");
+
+        assertThat(page)
+                .isEqualTo("redirect:/error");
+    }
+
+    private CartService createCartServiceWithDummies() {
+        return new CartService(
+                DUMMY_PRODUCT_PRICE_FETCHER, DUMMY_DISCOUNT_FETCHER);
     }
 
 }
