@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <meta charset="UTF-8">
     <title>Scan Product</title>
@@ -8,7 +10,10 @@
 
 <form method="post" action="#" th:action="@{/}">
     <p>
-        UPC: <input type="text" th:field="${upc}">
+        <label>
+            UPC:
+            <input type="text" th:field="${upc}">
+        </label>
     </p>
     <button type="submit">Add Product</button>
 </form>
