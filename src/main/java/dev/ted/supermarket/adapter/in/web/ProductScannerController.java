@@ -1,6 +1,7 @@
 package dev.ted.supermarket.adapter.in.web;
 
 import dev.ted.supermarket.application.CartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProductScannerController {
     private final CartService cartService;
 
+    @Autowired
     public ProductScannerController(CartService cartService) {
         this.cartService = cartService;
     }

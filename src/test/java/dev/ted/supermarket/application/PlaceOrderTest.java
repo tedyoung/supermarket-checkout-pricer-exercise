@@ -1,7 +1,7 @@
 package dev.ted.supermarket.application;
 
-import dev.ted.supermarket.application.port.ProductPriceFetcherStub;
 import dev.ted.supermarket.application.port.StubDiscountFetcher;
+import dev.ted.supermarket.application.port.StubProductPriceFetcher;
 import dev.ted.supermarket.domain.Receipt;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
-        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
+        StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
         CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts());
         cartService.addProduct(TOOTHBRUSH_UPC);
@@ -31,7 +31,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithNoProductsFinalizeOrderThrowsException() throws Exception {
-        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub();
+        StubProductPriceFetcher productPricer = new StubProductPriceFetcher();
         CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts());
 
         assertThatThrownBy(cartService::finalizeOrder)
@@ -40,7 +40,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
-        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
+        StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
         CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts());
         cartService.addProduct(TOOTHBRUSH_UPC);
@@ -55,7 +55,7 @@ public class PlaceOrderTest {
 
     @Test
     public void cartWithTwoProductsFinalizeOrderReturnsReceiptWithAllProducts() throws Exception {
-        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
+        StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1),
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
         CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts());

@@ -1,8 +1,8 @@
 package dev.ted.supermarket.application;
 
 import dev.ted.supermarket.application.port.DiscountFetcher;
-import dev.ted.supermarket.application.port.ProductPriceFetcherStub;
 import dev.ted.supermarket.application.port.StubDiscountFetcher;
+import dev.ted.supermarket.application.port.StubProductPriceFetcher;
 import dev.ted.supermarket.domain.DiscountRule;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class AddProductViaCartServiceTest {
 
     @Test
     public void twoItemsThenCartTotalPriceIsSumOfProductPrices() throws Exception {
-        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
+        StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1),
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
         CartService cartService = new CartService(productPricer, 
@@ -33,7 +33,7 @@ public class AddProductViaCartServiceTest {
 
     @Test
     public void addToothpasteThenCartTotalPriceIsThreeDollars() throws Exception {
-        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
+        StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
         CartService cartService = new CartService(productPricer,
                                                   StubDiscountFetcher.noDiscounts());
@@ -46,7 +46,7 @@ public class AddProductViaCartServiceTest {
 
     @Test
     public void whereDiscountServiceHas10PercentDiscountRuleThenRuleIsApplied() throws Exception {
-        ProductPriceFetcherStub productPricer = new ProductPriceFetcherStub(
+        StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 "0987", BigDecimal.valueOf(8));
         DiscountFetcher discountFetcher = new StubDiscountFetcher(
                 "0987", DiscountRule.TEN_PERCENT_OFF);

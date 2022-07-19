@@ -4,20 +4,20 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductPriceFetcherStub implements ProductPriceFetcher {
+public class StubProductPriceFetcher implements ProductPriceFetcher {
 
     private final Map<String, BigDecimal> productToPrice = new HashMap<>();
 
-    public ProductPriceFetcherStub() {
+    public StubProductPriceFetcher() {
     }
 
-    public ProductPriceFetcherStub(String upc, BigDecimal price,
+    public StubProductPriceFetcher(String upc, BigDecimal price,
                                    String upc2, BigDecimal price2) {
         productToPrice.put(upc, price);
         productToPrice.put(upc2, price2);
     }
 
-    public ProductPriceFetcherStub(String upc, BigDecimal price) {
+    public StubProductPriceFetcher(String upc, BigDecimal price) {
         productToPrice.put(upc, price);
     }
 
