@@ -6,7 +6,12 @@
 </head>
 <body>
 
-
+<form method="post" action="#" th:action="@{/}">
+    <p>
+        UPC: <input type="text" th:field="${upc}">
+    </p>
+    <button type="submit">Add Product</button>
+</form>
 
 </body>
 </html>
