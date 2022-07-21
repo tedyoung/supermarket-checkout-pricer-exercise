@@ -1,8 +1,8 @@
 package dev.ted.supermarket;
 
 import dev.ted.supermarket.application.CartService;
+import dev.ted.supermarket.application.port.DiscountFetcher;
 import dev.ted.supermarket.application.port.ProductPriceFetcher;
-import dev.ted.supermarket.domain.DiscountRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,9 +15,10 @@ public class CheckoutPricerApplication {
 	}
 
 	@Bean
-	public CartService cartService(ProductPriceFetcher productPriceFetcher) {
+	public CartService cartService(ProductPriceFetcher productPriceFetcher,
+								   DiscountFetcher discountFetcher) {
 		return new CartService(productPriceFetcher,
-							   upc -> DiscountRule.NONE);
+							   discountFetcher);
 	}
 
 }
