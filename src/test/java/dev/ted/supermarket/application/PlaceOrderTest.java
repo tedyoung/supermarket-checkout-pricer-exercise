@@ -18,7 +18,7 @@ public class PlaceOrderTest {
     public void cartWithOneProductFinalizeOrderThenEmptiesCart() throws Exception {
         StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
-        CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts());
+        CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts(), (upc, productPrice) -> {});
         cartService.addProduct(TOOTHBRUSH_UPC);
 
         cartService.finalizeOrder();
@@ -32,7 +32,7 @@ public class PlaceOrderTest {
     @Test
     public void cartWithNoProductsFinalizeOrderThrowsException() throws Exception {
         StubProductPriceFetcher productPricer = new StubProductPriceFetcher();
-        CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts());
+        CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts(), (upc, productPrice) -> {});
 
         assertThatThrownBy(cartService::finalizeOrder)
                 .isInstanceOf(NoProductsInCartException.class);
@@ -42,7 +42,7 @@ public class PlaceOrderTest {
     public void cartWithOneProductFinalizeOrderReturnsReceipt() throws Exception {
         StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1));
-        CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts());
+        CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts(), (upc, productPrice) -> {});
         cartService.addProduct(TOOTHBRUSH_UPC);
 
         Receipt receipt = cartService.finalizeOrder();
@@ -58,7 +58,7 @@ public class PlaceOrderTest {
         StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1),
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
-        CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts());
+        CartService cartService = new CartService(productPricer, StubDiscountFetcher.noDiscounts(), (upc, productPrice) -> {});
         cartService.addProduct(TOOTHBRUSH_UPC);
         cartService.addProduct(TOOTHPASTE_UPC);
 

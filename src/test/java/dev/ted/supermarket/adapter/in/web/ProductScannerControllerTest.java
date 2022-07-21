@@ -21,7 +21,7 @@ class ProductScannerControllerTest {
     @Test
     public void scanProductReturnsScanTemplateWithEmptyUpcAndCartTotal() throws Exception {
         ProductScannerController productScannerController =
-                new ProductScannerController(new CartService(null, null));
+                new ProductScannerController(new CartService(null, null, (upc, productPrice) -> {}));
         Model model = new ConcurrentModel();
 
         String page = productScannerController.scanProduct(model);
@@ -73,7 +73,7 @@ class ProductScannerControllerTest {
 
     private CartService createCartServiceWithDummies() {
         return new CartService(
-                DUMMY_PRODUCT_PRICE_FETCHER, DUMMY_DISCOUNT_FETCHER);
+                DUMMY_PRODUCT_PRICE_FETCHER, DUMMY_DISCOUNT_FETCHER, (upc, productPrice) -> {});
     }
 
 }

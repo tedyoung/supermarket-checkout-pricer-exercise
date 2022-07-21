@@ -18,7 +18,8 @@ public class CheckoutPricerApplication {
 	public CartService cartService(ProductPriceFetcher productPriceFetcher,
 								   DiscountFetcher discountFetcher) {
 		return new CartService(productPriceFetcher,
-							   discountFetcher);
+							   discountFetcher,
+							   (upc, productPrice) -> {});
 	}
 
 }

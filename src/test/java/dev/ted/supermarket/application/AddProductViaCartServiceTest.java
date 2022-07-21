@@ -21,8 +21,8 @@ public class AddProductViaCartServiceTest {
         StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHBRUSH_UPC, BigDecimal.valueOf(1),
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
-        CartService cartService = new CartService(productPricer, 
-                                                  StubDiscountFetcher.noDiscounts());
+        CartService cartService = new CartService(productPricer,
+                                                  StubDiscountFetcher.noDiscounts(), (upc, productPrice) -> {});
 
         cartService.addProduct(TOOTHBRUSH_UPC);
         cartService.addProduct(TOOTHPASTE_UPC);
@@ -36,7 +36,7 @@ public class AddProductViaCartServiceTest {
         StubProductPriceFetcher productPricer = new StubProductPriceFetcher(
                 TOOTHPASTE_UPC, BigDecimal.valueOf(3));
         CartService cartService = new CartService(productPricer,
-                                                  StubDiscountFetcher.noDiscounts());
+                                                  StubDiscountFetcher.noDiscounts(), (upc, productPrice) -> {});
 
         cartService.addProduct(TOOTHPASTE_UPC);
 
@@ -50,7 +50,7 @@ public class AddProductViaCartServiceTest {
                 "0987", BigDecimal.valueOf(8));
         DiscountFetcher discountFetcher = new StubDiscountFetcher(
                 "0987", DiscountRule.TEN_PERCENT_OFF);
-        CartService cartService = new CartService(productPricer, discountFetcher);
+        CartService cartService = new CartService(productPricer, discountFetcher, (upc, productPrice) -> {});
 
         cartService.addProduct("0987");
 
