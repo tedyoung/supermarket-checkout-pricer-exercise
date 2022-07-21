@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+// Programmable Stub
 public class StubProductPriceFetcher implements ProductPriceFetcher {
 
     private final Map<String, BigDecimal> productToPrice = new HashMap<>();

@@ -26,7 +26,9 @@ public class ProductScannerController {
 
     @PostMapping("/")
     public String addProduct(
-            @RequestParam(name = "upc", defaultValue = "") String upc) {
+            @RequestParam(
+                    name = "upc",
+                    defaultValue = "") String upc) {
         if (upc.isBlank()) {
             return "redirect:/error";
         }
