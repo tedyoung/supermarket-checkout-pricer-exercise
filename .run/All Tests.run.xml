@@ -4,7 +4,8 @@
     <option name="PACKAGE_NAME" value="" />
     <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />
-    <option name="TEST_OBJECT" value="package" />
+    <option name="TEST_OBJECT" value="tags" />
+    <tag value="!manual" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
